@@ -68,9 +68,11 @@ nnoremap <silent> ,i :JavaImport<CR>
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 syntax enable
-set background=dark
-colorscheme hybrid
-let g:solarized_termcolors=256
+" set background=dark
+" colorscheme hybrid
+" let g:solarized_termcolors=256
+colorscheme molokai
+let g:molokai_original = 1
 set clipboard=unnamedplus
 
 so ~/.vim/settings.vim
