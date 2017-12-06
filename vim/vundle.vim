@@ -82,5 +82,8 @@ Bundle 'kana/vim-textobj-indent'
 " ack
 Bundle 'mileszs/ack.vim'
 
+" elixir
+Bundle 'elixir-editors/vim-elixir'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
