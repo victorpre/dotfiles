@@ -15,6 +15,7 @@ Bundle 'Shougo/neocomplete.vim'
 Bundle 'ntpeters/vim-better-whitespace'
 Bundle 'itchyny/lightline.vim'
 Bundle 'tacahiroy/ctrlp-funky'
+Bundle 'Yggdroot/indentLine'
 
 " git
 " gitk for vim
