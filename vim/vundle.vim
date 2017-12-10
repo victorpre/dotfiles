@@ -34,7 +34,7 @@ Bundle 'marcweber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'honza/vim-snippets'
  "syntax checking
-Bundle 'scrooloose/syntastic'
+Bundle 'vim-syntastic/syntastic'
 
 " ruby/rails
 Bundle 'tpope/vim-rails'
@@ -85,6 +85,11 @@ Bundle 'mileszs/ack.vim'
 
 " elixir
 Bundle 'elixir-editors/vim-elixir'
+
+
+"Python
+Bundle 'nvie/vim-flake8'
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required

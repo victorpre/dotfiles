@@ -67,7 +67,10 @@ nnoremap <silent> ,i :JavaImport<CR>
 " search for visually hightlighted text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
+
+let python_highlight_all=1
 syntax enable
+syntax on
 " set background=dark
 " colorscheme hybrid
 " let g:solarized_termcolors=256
@@ -80,6 +83,8 @@ so ~/.vim/settings.vim
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype python setlocal ts=4 sts=4 sw=4
+
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class,*/target/*,*/node_modules/*,*/bower_components/*
 set wildignore+=*/dist/*
