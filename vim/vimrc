@@ -60,9 +60,7 @@ set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
-nnoremap <silent> \t :NERDTree<CR>
-nnoremap <silent> ,i :JavaImport<CR>
-nnoremap <silent> ,i :JavaImport<CR>
+nnoremap <silent> \t :NERDTreeToogle<CR>
 
 " search for visually hightlighted text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
