@@ -67,6 +67,8 @@ plugins=(
   zsh-autosuggestions
   tmux
   tmuxinator
+  python
+  virtualenv
 )
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
