@@ -67,6 +67,8 @@ plugins=(
   zsh-autosuggestions
   tmux
   tmuxinator
+  python
+  virtualenv
 )
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
@@ -81,7 +83,9 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   virtualenv
   time
 )
-
+POWERLEVEL9K_PYTHON_ICON=''
+POWERLEVEL9K_VCS_COMMIT_ICON='\uf417'
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
