@@ -1,5 +1,5 @@
-function! CodeFormatter()
+function! ElixirCodeFormatter()
   normal gggqG
 endfunction
 
-:command Format call CodeFormatter()
+:command MixFormat call ElixirCodeFormatter()
