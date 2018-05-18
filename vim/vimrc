@@ -87,7 +87,7 @@ autocmd Filetype python setlocal ts=4 sts=4 sw=4
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class,*/target/*,*/node_modules/*,*/bower_components/*
 set wildignore+=*/dist/*
 
-
+set re=1
 "let g:EclimCompletionMethod = 'omnifunc'
 "
 "if !exists('g:neocomplcache_force_omni_patterns')
