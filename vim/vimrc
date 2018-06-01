@@ -88,6 +88,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class,*/target/*,*/node_modules/*,*/b
 set wildignore+=*/dist/*
 
 set re=1
+noremap <F4> :set hlsearch! hlsearch?<CR>
+
 "let g:EclimCompletionMethod = 'omnifunc'
 "
 "if !exists('g:neocomplcache_force_omni_patterns')
