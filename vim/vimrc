@@ -90,6 +90,13 @@ set wildignore+=*/dist/*
 set re=1
 noremap <F4> :set hlsearch! hlsearch?<CR>
 
+" Ack
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack
+
 "let g:EclimCompletionMethod = 'omnifunc'
 "
 "if !exists('g:neocomplcache_force_omni_patterns')
