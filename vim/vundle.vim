@@ -41,6 +41,9 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'ngmy/vim-rubocop'
 Bundle 'thoughtbot/vim-rspec'
 
+" scala
+Bundle 'derekwyatt/vim-scala'
+
 " search
  "print numbers of matches
 Bundle 'vim-scripts/IndexedSearch'
