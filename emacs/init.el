@@ -11,7 +11,6 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 (require 'base)
-(require 'init-evil)
 
 (provide 'init)
 ;;; init.el ends here
