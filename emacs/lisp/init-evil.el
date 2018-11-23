@@ -120,12 +120,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (search-backward-regexp "\\(>>>>\\|====\\|<<<<\\)" (point-min) t)
     (move-beginning-of-line nil))
 
-  ;; PHP
-  (evil-define-key 'normal php-mode-map (kbd "]n") 'next-conflict-marker)
-  (evil-define-key 'normal php-mode-map (kbd "[n") 'previous-conflict-marker)
-  (evil-define-key 'visual php-mode-map (kbd "]n") 'next-conflict-marker)
-  (evil-define-key 'visual php-mode-map (kbd "[n") 'previous-conflict-marker)
-
   ;; Dired
   (evil-define-key 'normal dired-mode-map (kbd "C-e") 'dired-toggle-read-only))
 
