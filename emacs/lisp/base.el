@@ -61,6 +61,7 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (require 'init-evil)
+(require 'init-theme)
 
 (provide 'base)
 ;;; base ends here'
