@@ -11,6 +11,11 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 (require 'base)
+(require 'init-platform)
+(require 'init-theme)
+
+(require 'init-evil)
+(require 'init-powerline)
 
 (provide 'init)
 ;;; init.el ends here

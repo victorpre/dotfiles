@@ -20,30 +20,26 @@
       (call-interactively 'magit-blame))))
 
 (use-package evil
-  :ensure t
-; :defer .1
-  :init
-  :commands (evil-mode evil-define-key)
-  :config
-  (evil-mode 1)
+             :ensure t
+             ; :defer .1
+             :init
+             :commands (evil-mode evil-define-key)
+             :config
+             (evil-mode 1))
 
-  (use-package evil-leader
-    :ensure t
-    :config
-    (global-evil-leader-mode)
-    (air--config-evil-leader))
+(use-package evil-leader
+             :ensure t
+             :config
+             (global-evil-leader-mode)
+             (air--config-evil-leader))
 
-  (use-package evil-surround
-    :ensure t
-    :config
-    (global-evil-surround-mode))
+(use-package evil-surround
+             :ensure t
+             :config
+             (global-evil-surround-mode))
 
-  (use-package evil-indent-textobject
-    :ensure t)
-
-  (message "Loading evil-mode...done"))
-
-(require 'init-powerline)
+(use-package evil-indent-textobject
+             :ensure t)
 
 (provide 'init-evil)
 ;;; init-evil.el ends here
