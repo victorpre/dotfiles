@@ -20,12 +20,19 @@
       (call-interactively 'magit-blame))))
 
 (use-package evil
-             :ensure t
-             ; :defer .1
-             :init
-             :commands (evil-mode evil-define-key)
-             :config
-             (evil-mode 1))
+            :ensure t
+            ; :defer .1
+            :init
+            (setq evil-normal-state-tag   (propertize "NORMAL")
+                  evil-emacs-state-tag    (propertize "EMACS")
+                  evil-insert-state-tag   (propertize "INSERT")
+                  evil-motion-state-tag   (propertize "MOTION")
+                  evil-visual-state-tag   (propertize "VISUAL")
+                  evil-operator-state-tag (propertize "OPERATOR")
+            )
+      :commands (evil-mode evil-define-key)
+            :config
+            (evil-mode 1))
 
 (use-package evil-leader
              :ensure t
@@ -40,6 +47,7 @@
 
 (use-package evil-indent-textobject
              :ensure t)
+
 
 (provide 'init-evil)
 ;;; init-evil.el ends here

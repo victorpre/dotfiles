@@ -12,10 +12,10 @@
 
 (require 'base)
 (require 'init-platform)
-(require 'init-theme)
-
 (require 'init-evil)
+
 (require 'init-powerline)
+(require 'init-theme)
 
 (provide 'init)
 ;;; init.el ends here
