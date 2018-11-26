@@ -1,5 +1,6 @@
-(use-package solarized-theme
+(use-package color-theme-sanityinc-solarized
   :ensure t
-  :init (load-theme 'solarized-dark t))
+  :config
+  (load-theme 'sanityinc-solarized-dark t))
 
 (provide 'init-theme)
