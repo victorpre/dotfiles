@@ -31,22 +31,6 @@
 (add-hook 'lisp-interaction-mode-hook 'eldoc-mode)
 (add-hook 'ielm-mode-hook 'eldoc-mode)
 
-(telephone-line-defsegment my-evil-segment ()
-    (if (telephone-line-selected-window-active)
-      (let ((tag (cond
-                  ((string= evil-state "normal")    ":")
-                  ((string= evil-state "insert")    ">")
-                  ((string= evil-state "replace")   "r")
-                  ((string= evil-state "visual")    "!")
-                  ((string= evil-state "operator")  "=")
-                  ((string= evil-state "motion")    "m")
-                  ((string= evil-state "emacs")     "Emacs")
-                  (t "-"))))
-        (concat " " tag))))
-
-
-
-
 (use-package telephone-line
              :ensure t
              :config
@@ -65,10 +49,19 @@
                             'face `(:foreground ,fg-color)))
                   t)))
 
+            (custom-set-faces
+              '(telephone-line-evil-emacs ((t (:inherit telephone-line-evil :background "#6c71c4"))))
+              '(telephone-line-evil-normal ((t (:inherit telephone-line-evil :background "#d33682"))))
+              '(telephone-line-evil-insert ((t (:inherit telephone-line-evil :background "#268bd2"))))
+              '(telephone-line-evil-motion ((t (:inherit telephone-line-evil :background "DarkSlateBlue"))))
+              '(telephone-line-evil-operator ((t (:inherit telephone-line-evil :background "VioletRed"))))
+              '(telephone-line-evil-visual ((t (:inherit telephone-line-evil :background "#cb4b16"))))
+              '(telephone-line-evil-replace ((t (:inherit telephone-line-evil :background "#dc322f"))))
+              )
+
             (setq telephone-line-lhs
                   '((evil   . (telephone-line-evil-tag-segment))
-                    (nil     . ((git-segment :active)))
-                    ; FULL path needed
+                    (accent     . ((git-segment :active)))
                     (nil    . (telephone-line-projectile-buffer-segment))))
             (setq telephone-line-rhs
                   '((nil    . (telephone-line-misc-info-segment))
