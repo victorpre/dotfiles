@@ -10,7 +10,8 @@
     "g"  'magit-status
     "l"  'whitespace-mode       ;; Show invisible characters
     "S"  'delete-trailing-whitespace
-    "t"  'gtags-reindex)
+    "t"  'gtags-reindex
+    "n"  'neotree-toggle)
 
   (defun magit-blame-toggle ()
     "Toggle magit-blame-mode on and off interactively."
@@ -32,6 +33,8 @@
             )
       :commands (evil-mode evil-define-key)
             :config
+            (define-key evil-motion-state-map "\\" nil)
+            (define-key evil-motion-state-map "\\t" 'neotree-toggle)
             (evil-mode 1))
 
 (use-package evil-leader
