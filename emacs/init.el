@@ -16,6 +16,7 @@
 
 (require 'init-powerline)
 (require 'init-theme)
+(require 'init-neo-tree)
 
 (provide 'init)
 ;;; init.el ends here
