@@ -52,6 +52,10 @@
 (setq custom-safe-themes t)
 (column-number-mode t)
 (setq tab-width 2)
+
+;; Smooth scrolling
+(setq scroll-margin 8)
+(setq scroll-step 1)
 (defvar backup-dir "~/.emacs.d/backups/")
 
 ;; I like line numbers
