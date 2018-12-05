@@ -37,17 +37,23 @@
 
              (use-package telephone-line-utils)
 
+            (defadvice vc-mode-line (after strip-backend () activate)
+                       (when (stringp vc-mode)
+                         (let ((my-vc (replace-regexp-in-string "^ Git." "" vc-mode)))
+                           (setq vc-mode my-vc))))
+
+            ;; Display current branch
             (telephone-line-defsegment git-segment ()
-              (let ((fg-color "#6fb593"))
-                (telephone-line-raw
-                  (format "%s %s"
-                          (propertize (all-the-icons-octicon "git-branch")
-                                      'face `(:family ,(all-the-icons-octicon-family) :height 1.0 :foreground ,fg-color)
-                                      'display '(raise 0.0))
-                          (propertize
-                            (substring vc-mode (+ (if (eq (vc-backend buffer-file-name) 'Hg) 2 3) 2))
-                            'face `(:foreground ,fg-color)))
-                  t)))
+                                       (when (and vc-mode (telephone-line-selected-window-active))
+                                         ;; double format to prevent warnings in '*Messages*' buffer
+                                         (format "%s %s"
+                                                 (propertize (all-the-icons-octicon "git-branch")
+                                                             'face `(:family ,(all-the-icons-octicon-family) :height 1.0 :foreground ,(face-foreground 'font-lock-variable-name-face))
+                                                             'display '(raise 0.0))
+                                                 (propertize
+                                                   (format "%s"
+                                                           (telephone-line-raw vc-mode t))
+                                                   'face `(:foreground ,(face-foreground 'font-lock-variable-name-face))))))
 
             (custom-set-faces
               '(telephone-line-evil-emacs ((t (:inherit telephone-line-evil :background "#6c71c4"))))
@@ -62,7 +68,7 @@
             (setq telephone-line-lhs
                   '((evil   . (telephone-line-evil-tag-segment))
                     (accent     . ((git-segment :active)))
-                    (nil    . (telephone-line-projectile-buffer-segment))))
+                    (accent    . (telephone-line-projectile-buffer-segment ))))
             (setq telephone-line-rhs
                   '((nil    . (telephone-line-misc-info-segment))
                     (accent . (telephone-line-major-mode-segment))
