@@ -14,6 +14,7 @@
 (require 'init-platform)
 (require 'init-evil)
 
+(require 'init-projectile)
 (require 'init-powerline)
 (require 'init-theme)
 (require 'init-neo-tree)
