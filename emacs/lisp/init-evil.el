@@ -10,8 +10,9 @@
     "g"  'magit-status
     "l"  'whitespace-mode       ;; Show invisible characters
     "S"  'delete-trailing-whitespace
-    "t"  'gtags-reindex
-    "n"  'neotree-toggle)
+    "n"  'neotree-toggle
+    "t"  'helm-find-files
+  )
 
   (defun magit-blame-toggle ()
     "Toggle magit-blame-mode on and off interactively."
