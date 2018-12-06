@@ -17,6 +17,8 @@
 (require 'init-powerline)
 (require 'init-theme)
 (require 'init-neo-tree)
+(require 'init-flycheck)
+(require 'init-ruby)
 
 (provide 'init)
 ;;; init.el ends here
