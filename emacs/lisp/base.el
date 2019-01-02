@@ -61,6 +61,9 @@
 ;; I like line numbers
 (global-linum-mode t)
 
+;; Menu
+(menu-bar-mode 1)
+
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
