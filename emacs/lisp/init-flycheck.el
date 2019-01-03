@@ -111,6 +111,8 @@
   (setq flycheck-rubocop-lint-only t)
   (setq-default flycheck-ruby-executable "~/.rbenv/shims/ruby")
   (setq-default flycheck-ruby-rubocop-executable "~/.rbenv/shims/rubocop")
+
+  (setq flycheck-global-modes '(not org-mode))
   )
 
 (add-hook 'after-init-hook 'global-flycheck-mode)

@@ -13,6 +13,7 @@
 (require 'base)
 (require 'init-platform)
 (require 'init-evil)
+(require 'init-org)
 
 (require 'init-projectile)
 (require 'init-powerline)
