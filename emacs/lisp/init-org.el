@@ -13,7 +13,10 @@
 (add-hook 'org-present-mode-hook #'hide-mode-line-mode)
 (add-hook 'org-present-mode-hook  (lambda () (linum-mode 0)))
 (add-hook 'org-present-mode-hook  (lambda () (evil-mode 0)))
-
+(add-hook 'org-present-mode-quit-hook
+             (lambda ()
+               (linum-mode t)
+               #'hide-mode-line-mode))
 
 ;; Zooming
 (global-set-key (kbd "C-+") #'text-scale-increase)

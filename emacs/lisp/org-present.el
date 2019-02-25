@@ -60,13 +60,15 @@
 ;; left and right page keys
 (define-key org-present-mode-keymap [right]         'org-present-next)
 (define-key org-present-mode-keymap [left]          'org-present-prev)
+(define-key org-present-mode-keymap (kbd "C-c >")         'org-present-next)
+(define-key org-present-mode-keymap (kbd "C-c <")         'org-present-prev)
 (define-key org-present-mode-keymap (kbd "C-c C-=") 'org-present-big)
 (define-key org-present-mode-keymap (kbd "C-c C--") 'org-present-small)
 (define-key org-present-mode-keymap (kbd "C-c C-q") 'org-present-quit)
 (define-key org-present-mode-keymap (kbd "C-c C-r") 'org-present-read-only)
 (define-key org-present-mode-keymap (kbd "C-c C-w") 'org-present-read-write)
-(define-key org-present-mode-keymap (kbd "C-c <")   'org-present-beginning)
-(define-key org-present-mode-keymap (kbd "C-c >")   'org-present-end)
+(define-key org-present-mode-keymap (kbd "C-c 0")   'org-present-beginning)
+(define-key org-present-mode-keymap (kbd "C-c $")   'org-present-end)
 
 ;; how much to scale up font size
 (defvar org-present-text-scale 5)
