@@ -11,6 +11,10 @@
       (set-face-attribute 'default nil :height 140)
       (global-set-key (kbd "M-q") 'save-buffers-kill-terminal) ; CMD + q
 
-      )
+
+      (global-set-key (kbd "M-v") #'clipboard-yank)
+      (global-set-key (kbd "M-c") #'clipboard-kill-region)
+
+)
 
 (provide 'init-platform)
