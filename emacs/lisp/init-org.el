@@ -10,15 +10,46 @@
 
 ;; Org-present
 (require 'org-present)
-(add-hook 'org-present-mode-hook #'hide-mode-line-mode)
-(add-hook 'org-present-mode-hook  (lambda () (linum-mode 0)))
-(add-hook 'org-present-mode-hook  (lambda () (evil-mode 0)))
-(add-hook 'org-present-mode-quit-hook
-             (lambda ()
-               (evil-mode t)
-               (linum-mode t)
-               (hide-mode-line-mode -1)
-               ))
+(eval-after-load "org-present"
+  '(progn
+     (add-hook 'org-present-mode-hook
+               (lambda ()
+                 (hide-mode-line-mode 1)
+                 (evil-mode 0)
+                 (linum-mode 0)
+                 (org-present-big)
+                 (org-display-inline-images)
+                 (org-present-read-only)))
+     (add-hook 'org-present-mode-quit-hook
+               (lambda ()
+                 (evil-mode t)
+                 (linum-mode t)
+                 (hide-mode-line-mode -1)
+                 (org-present-small)
+                 (org-remove-inline-images)
+                 (org-present-read-write)))))
+
+;; Image links
+(require 'org-yt)
+(defun org-image-link (protocol link _description)
+  "Interpret LINK as base64-encoded image data."
+  (cl-assert (string-match "\\`img" protocol) nil
+             "Expected protocol type starting with img")
+  (let ((buf (url-retrieve-synchronously (concat (substring protocol 3) ":" link))))
+    (cl-assert buf nil
+               "Download of image \"%s\" failed." link)
+    (with-current-buffer buf
+      (goto-char (point-min))
+      (re-search-forward "\r?\n\r?\n")
+      (buffer-substring-no-properties (point) (point-max)))))
+
+(org-link-set-parameters
+ "imghttp"
+ :image-data-fun #'org-image-link)
+
+(org-link-set-parameters
+ "imghttps"
+ :image-data-fun #'org-image-link)
 
 ;; Zooming
 (global-set-key (kbd "C-+") #'text-scale-increase)
