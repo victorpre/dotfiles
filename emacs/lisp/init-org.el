@@ -19,7 +19,8 @@
                  (linum-mode 0)
                  (org-present-big)
                  (org-display-inline-images)
-                 (org-present-read-only)))
+                 (org-present-read-only)
+                 (org-toggle-latex-fragment)))
      (add-hook 'org-present-mode-quit-hook
                (lambda ()
                  (evil-mode t)
@@ -27,7 +28,8 @@
                  (hide-mode-line-mode -1)
                  (org-present-small)
                  (org-remove-inline-images)
-                 (org-present-read-write)))))
+                 (org-present-read-write)
+                 (org-toggle-latex-fragment)))))
 
 ;; Image links
 (require 'org-yt)
@@ -54,5 +56,10 @@
 ;; Zooming
 (global-set-key (kbd "C-+") #'text-scale-increase)
 (global-set-key (kbd "C-\-") #'text-scale-decrease)
+
+;; Latex
+;; Add #+STARTUP: latexpreview on the top of the org file
+(setq org-preview-latex-default-process 'imagemagick)
+
 
 (provide 'init-org)
