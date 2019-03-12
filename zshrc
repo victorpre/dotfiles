@@ -68,6 +68,7 @@ plugins=(
   tmuxinator
   python
   virtualenv
+  rbenv
 )
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
@@ -78,6 +79,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
 
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   status
+  rbenv
   root_indicator
   virtualenv
   time
