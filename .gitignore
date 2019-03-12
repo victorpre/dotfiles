@@ -1,2 +1,6 @@
 vim/bundle/**
-
+emacs/elpa/*
+emacs/recentf
+emacs/projectile-bookmarks.eld
+emacs/bookmarks
+emacs/auto-save-list
