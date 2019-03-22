@@ -219,6 +219,7 @@
   "init."
   (interactive)
   (setq org-present-mode t)
+  (org-toggle-latex-fragment '(16))
   (org-present-add-overlays)
   (org-present-narrow)
   (run-hooks 'org-present-mode-hook))
