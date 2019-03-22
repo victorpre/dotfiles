@@ -20,7 +20,7 @@
                  (org-present-big)
                  (org-display-inline-images)
                  (org-present-read-only)
-                 (org-toggle-latex-fragment)))
+                 )
      (add-hook 'org-present-mode-quit-hook
                (lambda ()
                  (evil-mode t)
@@ -29,8 +29,8 @@
                  (org-present-small)
                  (org-remove-inline-images)
                  (org-present-read-write)
-                 (org-toggle-latex-fragment)))))
-
+                 (org-toggle-latex-fragment '(16))))))
+)
 ;; Image links
 (require 'org-yt)
 (defun org-image-link (protocol link _description)
