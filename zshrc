@@ -127,3 +127,11 @@ if [ -d $HOME/.rbenv ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+
+export LDFLAGS="-L/usr/local/opt/openssl/lib"
+export CFLAGS="-I/usr/local/opt/openssl/include"
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
+export PATH="/usr/local/opt/avr-gcc@7/bin:$PATH"
