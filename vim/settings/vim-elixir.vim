@@ -2,4 +2,4 @@ function! ElixirCodeFormatter()
   normal gggqG
 endfunction
 
-:command MixFormat call ElixirCodeFormatter()
+:command Retab call ElixirCodeFormatter()

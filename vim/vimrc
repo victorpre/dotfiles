@@ -45,7 +45,7 @@ set expandtab
 filetype plugin on
 filetype indent on
 
-
+set tags=./tags;,tags;
 
 
 " Display tabs and trailing spaces visually
@@ -53,6 +53,17 @@ filetype indent on
 "
 set nowrap       "Don't wrap lines
 set linebreak    "Wrap lines at convenient points
+
+" Use spacebar for folding.
+nnoremap <space> za
+vnoremap <space> zf
+
+" Use ; for commands.
+nnoremap ; :
+
+" Rotate between last two files
+nnoremap ,n <C-^>
+nnoremap ,gb <C-O>
 
 " ================ Scrolling ========================
 "
@@ -69,14 +80,15 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 let python_highlight_all=1
 syntax enable
 syntax on
+
+so ~/.vim/settings.vim
+
 " set background=dark
 " colorscheme hybrid
 " let g:solarized_termcolors=256
 colorscheme molokai
 let g:molokai_original = 1
-set clipboard=unnamedplus
-
-so ~/.vim/settings.vim
+set clipboard=unnamed
 
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
@@ -104,3 +116,5 @@ cnoreabbrev AG Ack
 "endif
 "let g:neocomplcache_force_omni_patterns.java = '\k\.\k*'
 "let g:neocomplcache_force_omni_patterns.scala = '\k\.\k*'
+"
+:command! CurrentPath let @+ = expand('%:p')
