@@ -87,6 +87,7 @@ Bundle 'mileszs/ack.vim'
 
 " elixir
 Bundle 'elixir-editors/vim-elixir'
+Bundle 'mhinz/vim-mix-format'
 
 
 "Python
