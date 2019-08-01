@@ -81,6 +81,7 @@ let python_highlight_all=1
 syntax enable
 syntax on
 
+so ~/.vim/settings.vim
 
 " set background=dark
 " colorscheme hybrid
@@ -88,9 +89,6 @@ syntax on
 colorscheme molokai
 let g:molokai_original = 1
 set clipboard=unnamed
-
-
-so ~/.vim/settings.vim
 
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
