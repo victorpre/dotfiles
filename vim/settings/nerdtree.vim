@@ -1,0 +1,1 @@
+map \y :NERDTreeFind<CR>
