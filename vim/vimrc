@@ -124,8 +124,12 @@ cnoreabbrev AG Ack
 :command! CurrentPath let @+ = expand('%:p')
 
 " Maps ESC to exit terminal's insert mode
-  if has('nvim')
+  if has('nvim') || has('gui_running')
     tnoremap <Esc> <C-\><C-n>
+
+    autocmd! FileType fzf
+    autocmd  FileType fzf set laststatus=0 noshowmode noruler
+          \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
   endif
 
 " Tabs and panes
