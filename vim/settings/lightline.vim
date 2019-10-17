@@ -1,10 +1,16 @@
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
 let g:lightline = {
             \ 'colorscheme': 'dracula',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+            \             [ 'cocstatus', 'currentfunction', 'fugitive', 'readonly', 'filename', 'modified' ] ]
             \ },
             \ 'component_function': {
+            \   'cocstatus': 'coc#status',
+            \   'currentfunction': 'CocCurrentFunction',
             \   'fugitive': 'MyFugitive',
             \   'readonly': 'MyReadonly',
             \   'filename': 'MyFilename',
@@ -39,3 +45,6 @@ endfunction
 " Use status bar even with
 " single buffer
 set laststatus=2
+
+" Hide default modeline
+set noshowmode
