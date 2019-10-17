@@ -109,12 +109,107 @@ cnoreabbrev aG Ack
 cnoreabbrev Ag Ack
 cnoreabbrev AG Ack
 
-"let g:EclimCompletionMethod = 'omnifunc'
-"
-"if !exists('g:neocomplcache_force_omni_patterns')
-"    let g:neocomplcache_force_omni_patterns = {}
-"endif
-"let g:neocomplcache_force_omni_patterns.java = '\k\.\k*'
-"let g:neocomplcache_force_omni_patterns.scala = '\k\.\k*'
-"
+
+" Yank path of current buffer
 :command! CurrentPath let @+ = expand('%:p')
+
+" Maps ESC to exit terminal's insert mode
+  if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+  endif
+
+" Tabs and panes
+nnoremap <C-h> <c-w>h
+nnoremap <C-j> <c-w>j
+nnoremap <C-k> <c-w>k
+nnoremap <C-l> <c-w>l
+
+inoremap <C-h> <Esc><c-w>h
+inoremap <C-j> <Esc><c-w>j
+inoremap <C-k> <Esc><c-w>k
+inoremap <C-l> <Esc><c-w>l
+
+vnoremap <C-h> <Esc><c-w>h
+vnoremap <C-j> <Esc><c-w>j
+vnoremap <C-k> <Esc><c-w>k
+vnoremap <C-l> <Esc><c-w>l
+
+tnoremap <C-h> <c-\><c-n><c-w>h
+tnoremap <C-j> <c-\><c-n><c-w>j
+tnoremap <C-k> <c-\><c-n><c-w>k
+tnoremap <C-l> <c-\><c-n><c-w>l
+
+" Use nvim terminal instead of tmux
+" " Sets mappings for moving between tabs
+" nnoremap <C-a>h :tabp<CR>
+" nnoremap <C-a>l :tabn<CR>
+
+" inoremap <C-a>h <Esc>:tabp<CR>
+" inoremap <C-a>l <Esc>:tabn<CR>
+
+" vnoremap <C-a>h <Esc>:tabp<CR>
+" vnoremap <C-a>l <Esc>:tabn<CR>
+
+" tnoremap <C-a>h <c-\><c-n>:tabp<CR>
+" tnoremap <C-a>l <c-\><c-n>:tabn<CR>
+
+" " Maps ctrl-a + c to open a new tab window
+" nnoremap <C-a>c :tabnew +terminal<CR>
+" tnoremap <C-a>c <C-\><C-n>:tabnew +terminal<CR>
+
+" " Maps ctrl-a + h to open a new horizontal split with a terminal
+" nnoremap <C-a>h :new +terminal<CR>
+" tnoremap <C-a>h <C-\><C-n>:new +terminal<CR>
+
+" " Maps ctrl-a + v to open a new vertical split with a terminal
+" nnoremap <C-a>v :vnew +terminal<CR>
+" tnoremap <C-a>v <C-\><C-n>:vnew +terminal<cr>
+
+" nnoremap <C-a>1 1gt
+" nnoremap <C-a>2 2gt
+" nnoremap <C-a>3 3gt
+" nnoremap <C-a>4 4gt
+" nnoremap <C-a>5 5gt
+
+
+" NeoVim
+augroup neovim_terminal
+  autocmd!
+
+  " Enter Terminal-mode (insert) automatically
+  autocmd TermOpen * startinsert
+
+  " Disables number lines on terminal buffers
+  autocmd TermOpen * :set nonumber norelativenumber
+augroup END
+
+" Edit files within Nvim's terminal without nesting sessions.
+augroup prevent_nested_edit
+
+  autocmd VimEnter * if !empty($NVIM_LISTEN_ADDRESS) && $NVIM_LISTEN_ADDRESS !=# v:servername
+        \ |let g:r=jobstart(['nc', '-U', $NVIM_LISTEN_ADDRESS],{'rpc':v:true})
+        \ |let g:f=fnameescape(expand('%:p'))
+        \ |noau bwipe
+        \ |call rpcrequest(g:r, "nvim_command", "edit ".g:f)
+        \ |call rpcrequest(g:r, "nvim_command", "call lib#SetNumberDisplay()")
+        \ |qa
+        \ |endif
+
+
+augroup END
+
+" augroup startup
+" 	autocmd!
+
+" 	" save whenever things change
+" 	autocmd TextChanged,InsertLeave * call lib#SaveAndRestoreVisualSelectionMarks()
+
+" 	" turn numbers on for normal buffers; turn them off for terminal buffers
+" 	autocmd TermOpen,BufWinEnter * call lib#SetNumberDisplay()
+
+" 	" avoid nesting vim
+" 	autocmd VimEnter * call lib#SplitWithoutNesting()
+
+" 	" enter insert mode whenever we're in a terminal
+" 	autocmd TermOpen,BufWinEnter,BufEnter term://* startinsert
+" augroup END
