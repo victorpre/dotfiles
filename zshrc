@@ -1,3 +1,5 @@
+export TERM="xterm-256color"
+zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -45,7 +47,7 @@ ZSH_TMUX_AUTOSTART='true'
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -72,7 +74,8 @@ plugins=(
 )
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-  context
+  # context
+  user
   dir
   vcs
 )
@@ -85,8 +88,12 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   time
 )
 
-POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='190'
-POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='000'
+# Molokai
+# POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='190'
+# POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='000'
+# Dracula
+POWERLEVEL9K_USER_DEFAULT_BACKGROUND='081'
+POWERLEVEL9K_USER_DEFAULT_FOREGROUND='000'
 POWERLEVEL9K_PYTHON_ICON=''
 POWERLEVEL9K_VCS_GIT_ICON='\uF113'
 POWERLEVEL9K_VCS_COMMIT_ICON='\uf417'
@@ -99,6 +106,7 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -121,9 +129,26 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-if [ -d $HOME/.rbenv ]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
+# if [ -d $HOME/.rbenv ]; then
+#   export PATH="$HOME/.rbenv/bin:$PATH"
+#   command="rbenv init -"
+#   eval $(command)
+# fi
+
+rbenv() {
+  eval "$(command rbenv init -)"
+  rbenv "$@"
+}
+
+# Neovim
+if type nvim > /dev/null 2>&1; then
+  alias vim='nvim'
+fi
+
+if [ -n "${NVIM_LISTEN_ADDRESS+x}" ]; then
+  alias h='nvr -o'
+  alias v='nvr -O'
+  alias t='nvr --remote-tab'
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
