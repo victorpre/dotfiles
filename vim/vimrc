@@ -83,11 +83,21 @@ syntax on
 
 so ~/.vim/settings.vim
 
-" set background=dark
-" colorscheme hybrid
-" let g:solarized_termcolors=256
-colorscheme molokai
-let g:molokai_original = 1
+" Molokai
+" colorscheme molokai
+" let g:molokai_original = 1
+
+" Draculalet g:dracula_italic = 0
+let g:dracula_italic = 0
+colorscheme dracula
+
+" Search highlight
+" set hlsearch
+" hi Search ctermbg=LightYellow
+" hi Search ctermfg=Red
+" Press Space to turn off highlighting and clear any message already displayed.
+:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
 set clipboard=unnamed
 
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
