@@ -1,5 +1,5 @@
  " Coc.nvim
-let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver','coc-tslint', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml', 'coc-stylelint']
+let g:coc_global_extensions = ['coc-solargraph', 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver','coc-tslint', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml', 'coc-stylelint']
 " Better display for messages
 set cmdheight=1
 " Smaller updatetime for CursorHold & CursorHoldI
@@ -10,20 +10,31 @@ set shortmess+=c
 set signcolumn=yes
 
 " Use `lp` and `ln` for navigate diagnostics
-nmap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>ln <Plug>(coc-diagnostic-next)
+nmap <silent> ,lp <Plug>(coc-diagnostic-prev)
+nmap <silent> ,ln <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> <leader>ld <Plug>(coc-definition)
-nmap <silent> <leader>lt <Plug>(coc-type-definition)
-nmap <silent> <leader>li <Plug>(coc-implementation)
-nmap <silent> <leader>lf <Plug>(coc-references)
+nmap <silent> ,ld <Plug>(coc-definition)
+nmap <silent> ,lt <Plug>(coc-type-definition)
+nmap <silent> ,li <Plug>(coc-implementation)
+nmap <silent> ,lf <Plug>(coc-references)
 
 " Remap for rename current word
-nmap <leader>lr <Plug>(coc-rename)
+nmap ,lr <Plug>(coc-rename)
 
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
 
 function! s:show_documentation()
   if &filetype == 'vim'

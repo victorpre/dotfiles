@@ -1,0 +1,17 @@
+{
+  "languageserver": {
+    "elixirLS": {
+      "command": "/absolute/path/to/elixir-ls/release/language_server.sh",
+      "filetypes": ["elixir", "eelixir"]
+    }
+  },
+  "solargraph.diagnostics": true,
+  "solargraph.completion": true,
+  "solargraph.useBundler": false,
+  "solargraph.hover": true,
+  "solargraph.references": true,
+  "solargraph.definitions": true,
+  "solargraph.autoformat": false,
+  "solargraph.folding": true,
+  "git.addGlameToBufferVar": true
+}
