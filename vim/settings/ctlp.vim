@@ -17,12 +17,11 @@
  map ,jj :CtrlP src/main/java<CR>
  map ,ja :CtrlP assets<CR>
 
- map ,ra :CtrlP app/assets<CR>
+ map ,rs :CtrlP app/services<CR>
  map ,rm :CtrlP app/models<CR>
  map ,rc :CtrlP app/controllers<CR>
  map ,rv :CtrlP app/views<CR>
- map ,rr :CtrlP app/assets/javascripts<CR>
- map ,rt :CtrlP test<CR>
+ map ,rt :CtrlP spec<CR>
 
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
