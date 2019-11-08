@@ -31,6 +31,8 @@ Plug 'tomtom/tlib_vim'
 Plug 'honza/vim-snippets'
  "syntax checking
 Plug 'vim-syntastic/syntastic'
+" Nav
+Plug 'christoomey/vim-tmux-navigator'
 
 " ruby/rails
 Plug 'tpope/vim-rails'
