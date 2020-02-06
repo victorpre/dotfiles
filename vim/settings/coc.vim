@@ -25,6 +25,9 @@ nmap ,lr <Plug>(coc-rename)
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+
+	nnoremap <expr><C-g> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-g>"
+	nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -45,4 +48,6 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd CursorHold * silent call CocAction('highlight')
+" autocmd CursorHold * if ! coc#util#has_float() | silent call CocAction('highlight') | endif
+" autocmd CursorHold * if ! coc#util#has_float() | call CocAction('doHover') | endif

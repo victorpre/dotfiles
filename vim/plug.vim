@@ -30,7 +30,7 @@ Plug 'marcweber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'honza/vim-snippets'
  "syntax checking
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 " Nav
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -91,6 +91,5 @@ Plug 'mhinz/vim-mix-format'
 
 "Python
 Plug 'nvie/vim-flake8'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
