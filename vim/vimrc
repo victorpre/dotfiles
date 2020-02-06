@@ -18,6 +18,7 @@ set cursorline
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
 set hidden
+set mouse=a
 
 " =============== Plug Initialization ===============
 " " This loads all the plugins specified in ~/.vim/plug.vim
@@ -63,7 +64,12 @@ nnoremap ; :
 
 " Rotate between last two files
 nnoremap ,n <C-^>
-nnoremap ,gb <C-O>
+nnoremap ,gb <C-o>
+
+" Tabs
+"To create a new tab
+nnoremap <C-t> :tabe<CR>
+inoremap <C-t> <Esc>:tabe<CR>
 
 " ================ Scrolling ========================
 "
@@ -157,6 +163,8 @@ augroup prevent_nested_edit
 
 
 augroup END
+
+au BufRead,BufNewFile *.sbt set filetype=scala
 
 if exists(':tnoremap')
     tnoremap <silent> <c-h> <c-\><c-n>:TmuxNavigateLeft<cr>
