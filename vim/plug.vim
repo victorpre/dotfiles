@@ -7,7 +7,6 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'tomasr/molokai'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'scrooloose/nerdtree'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'itchyny/lightline.vim'
 Plug 'tacahiroy/ctrlp-funky'
@@ -24,8 +23,6 @@ Plug 'mattn/gist-vim'
  "langs pack
 Plug 'sheerun/vim-polyglot'
   " support for textual sinppeets
-Plug 'garbas/vim-snipmate'
- "snippets pack for many langs.
 Plug 'marcweber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'honza/vim-snippets'
@@ -42,6 +39,7 @@ Plug 'thoughtbot/vim-rspec'
 
 " scala
 Plug 'derekwyatt/vim-scala'
+Plug 'nvim-lua/plenary.nvim'| Plug 'scalameta/nvim-metals'
 
 " search
  "print numbers of matches

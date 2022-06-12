@@ -67,7 +67,7 @@ nnoremap ,n <C-^>
 nnoremap ,gb <C-o>
 
 " Tabs
-"To create a new tab
+"But if it’s not possible to change, I can try adaptTo create a new tab
 nnoremap <C-t> :tabe<CR>
 inoremap <C-t> <Esc>:tabe<CR>
 

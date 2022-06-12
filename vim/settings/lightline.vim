@@ -2,14 +2,19 @@ function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
 
+function! CocMinimalStatus() abort
+  return get(g:, 'coc_status', '')
+endfunction
+
 let g:lightline = {
             \ 'colorscheme': 'dracula',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'cocstatus', 'currentfunction', 'fugitive', 'readonly', 'filename', 'modified' ] ]
+            \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
+            \   'right': [ [ 'cocstatus', 'currentfunction' ] ]
             \ },
             \ 'component_function': {
-            \   'cocstatus': 'coc#status',
+            \   'cocstatus': 'CocMinimalStatus',
             \   'currentfunction': 'CocCurrentFunction',
             \   'fugitive': 'MyFugitive',
             \   'readonly': 'MyReadonly',
@@ -31,7 +36,7 @@ endfunction
 
 function! MyFugitive()
     if exists("*fugitive#head")
-        let _ = fugitive#head()
+        let _ = FugitiveHead()
         return strlen(_) ? ' '._ : ''
     endif
     return ''
