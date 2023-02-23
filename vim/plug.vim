@@ -11,23 +11,12 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'itchyny/lightline.vim'
 Plug 'tacahiroy/ctrlp-funky'
 Plug 'Yggdroot/indentLine'
-
-" git
-" gitk for vim
-Plug 'gregsexton/gitv'
-" post gist
-Plug 'mattn/webapi-vim'
-Plug 'mattn/gist-vim'
+" git gitk for vim Plug 'gregsexton/gitv' post gist Plug 'mattn/webapi-vim' Plug 'mattn/gist-vim'
 
 " langs
  "langs pack
 Plug 'sheerun/vim-polyglot'
   " support for textual sinppeets
-Plug 'marcweber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'honza/vim-snippets'
- "syntax checking
-" Plug 'vim-syntastic/syntastic'
 " Nav
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -39,7 +28,10 @@ Plug 'thoughtbot/vim-rspec'
 
 " scala
 Plug 'derekwyatt/vim-scala'
-Plug 'nvim-lua/plenary.nvim'| Plug 'scalameta/nvim-metals'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 
 " search
  "print numbers of matches
@@ -89,5 +81,8 @@ Plug 'mhinz/vim-mix-format'
 
 "Python
 Plug 'nvie/vim-flake8'
+
+"LSP
+Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
