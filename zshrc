@@ -1,7 +1,7 @@
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -70,7 +70,6 @@ plugins=(
   tmuxinator
   python
   virtualenv
-  rbenv
 )
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
@@ -82,7 +81,6 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
 
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   status
-  rbenv
   root_indicator
   virtualenv
   time
@@ -134,11 +132,22 @@ export LC_ALL=en_US.UTF-8
 #   command="rbenv init -"
 #   eval $(command)
 # fi
+#
+#
+# ALIASES
 
-rbenv() {
-  eval "$(command rbenv init -)"
-  rbenv "$@"
+# Change java version through coursier
+changejava() {
+  eval "$(cs java --jvm $1 --env)"
 }
+
+
+export GPG_TTY=$(tty)
+
+# rbenv() {
+#   eval "$(command rbenv init -)"
+#   rbenv "$@"
+# }
 
 # Neovim
 if type nvim > /dev/null 2>&1; then
@@ -152,3 +161,32 @@ if [ -n "${NVIM_LISTEN_ADDRESS+x}" ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+export EDITOR="/opt/homebrew/bin/nvim"
+export GEM_HOME=$HOME/.gem
+export PATH=$GEM_HOME/bin:$PATH
+export PATH="/Users/victor.presumido/Library/Python/3.9/bin:$PATH"
+
+export GPG_TTY=$(tty)
+
+# export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+# export LIBRARY_PATH="/opt/homebrew/opt/openssl@3/lib:$LIBRARY_PATH"
+# export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib $LDFLAGS"
+# export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include $CPPFLAGS"
+# export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PATH"
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+chruby 3.2.2
+
+# pnpm
+export PNPM_HOME="/Users/victor.presumido/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
