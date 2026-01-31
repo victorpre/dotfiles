@@ -81,6 +81,74 @@
 
 (setq projectile-project-search-path '("~/Code/"))
 
+;; --------------------------------------------------------------------------
+;; Custom "Tmux-like" Control-A Map
+;; --------------------------------------------------------------------------
+
+;; 1. Define the custom menu
+(defvar my-ctrl-a-map (make-sparse-keymap)
+  "My custom prefix map for C-a (Tmux style)")
+
+;; 2. Fill the menu with commands
+(map! :map my-ctrl-a-map
+      ;; --- Window Movements (Arrows + Vim keys) ---
+      "<left>"  #'evil-window-left
+      "h"       #'evil-window-left
+      "<right>" #'evil-window-right
+      "l"       #'evil-window-right
+      "<up>"    #'evil-window-up
+      "k"       #'evil-window-up
+      "<down>"  #'evil-window-down
+      "j"       #'evil-window-down
+
+      ;; --- Workspace Switching ---
+      "a"       #'+workspace/other        ; Toggle last workspace
+      "1"       #'+workspace/switch-to-0
+      "2"       #'+workspace/switch-to-1
+      "3"       #'+workspace/switch-to-2
+      "4"       #'+workspace/switch-to-3
+      "5"       #'+workspace/switch-to-4
+      "6"       #'+workspace/switch-to-5
+      "7"       #'+workspace/switch-to-6
+      "8"       #'+workspace/switch-to-7
+      "9"       #'+workspace/switch-to-8
+      "0"       #'+workspace/switch-to-final
+
+      ;; --- Actions ---
+      "c"       #'+workspace/new
+      "x"       #'+workspace/kill)
+
+;; 3. Bind 'C-a' to this new menu GLOBALLY (The Nuclear Option)
+;; This ensures it works in Terminals, Dired, and Insert Mode.
+(after! general
+  (general-def :keymaps 'override
+    "C-a" my-ctrl-a-map))
+
+;; 4. Force "Which-Key" Descriptions
+;; This ensures the popup menu shows readable labels instead of function names.
+(after! which-key
+  (which-key-add-keymap-based-replacements my-ctrl-a-map
+    "c"       "New Workspace"
+    "x"       "Kill Workspace"
+    "a"       "Previous Workspace"
+    "1"       "Workspace 1"
+    "2"       "Workspace 2"
+    "3"       "Workspace 3"
+    "4"       "Workspace 4"
+    "5"       "Workspace 5"
+    "6"       "Workspace 6"
+    "7"       "Workspace 7"
+    "8"       "Workspace 8"
+    "9"       "Workspace 9"
+    "0"       "Last Workspace"
+    "h"       "Window Left"
+    "l"       "Window Right"
+    "k"       "Window Up"
+    "j"       "Window Down"
+    "<left>"  "Window Left"
+    "<right>" "Window Right"
+    "<up>"    "Window Up"
+    "<down>"  "Window Down"))
 
 ;; Formatting
 (use-package lsp-biome
@@ -134,16 +202,16 @@
   ;; Set terminal type and environment
   (setq vterm-environment '("TERM=xterm-256color"
                             "INSIDE_EMACS=vterm"))
-  
+
   ;; Set max scrollback
   (setq vterm-max-scrollback 10000)
-  
+
   ;; Better handling of long lines
   (setq vterm-copy-exclude-prompt t)
-  
+
   ;; Use builtin prompt detection for better right prompt support
   (setq vterm-use-vterm-prompt-detection-method 'builtin)
-  
+
   ;; Enable directory tracking
   (add-to-list 'vterm-eval-cmds '("update-pwd" (lambda (path) (setq default-directory path)))))
 
@@ -257,56 +325,61 @@
         corfu-preselect 'first
         +corfu-want-tab-prefer-expand-snippets t))
 
-;; (use-package! eat
-;;   :config
-;;   (setq eat-kill-buffer-on-exit t)
-;;   (setq eat-enable-mouse t)
-;;   (setq eat-term-name "xterm-256color")
-;;   (setq eat-environment '("INSIDE_EMACS=eat"))
-;;   (general-add-hook 'eshell-load-hook #'eat-eshell-mode)
-;;   (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
-;;   (when (eq system-type 'darwin)
-;;     (define-key eat-semi-char-mode-map (kbd "C-h")  #'eat-self-input)
-;;     (define-key eat-semi-char-mode-map (kbd "<backspace>") (kbd "C-h")))
+;; Claude
+(use-package! claude-code-ide
+  :bind ("C-c a i" . claude-code-ide-menu) ; Set your favorite keybinding
+  :config
+  (setq claude-code-ide-terminal-backend 'eat)
+  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 
-;;   ;; Custom function to adjust window size for eat terminal
-;;   (defun +eat-window-size-adjust (process windows)
-;;     "Calculate terminal size with adjusted width to prevent prompt chopping.
-;; PROCESS is the terminal process, WINDOWS is the list of windows displaying the buffer."
-;;     (when (and (process-live-p process) windows)
-;;       (with-selected-window (car windows)
-;;         (let* ((height (window-text-height))
-;;                (width (- (window-text-width) 4)))  ; Subtract 4 to account for display quirks
-;;           ;; Temporary debug output
-;;           (message "Eat window size: COLUMNS=%d LINES=%d (returning cons %d . %d)" 
-;;                    width height width height)
-;;           (cons width height)))))
+;; Org-Present
+(defun my/org-present-start ()
+  (setq-local face-remapping-alist
+              '((default (:height 1.5) default)  ; This replaces (text-scale-set)
+                (header-line (:height 4.0) variable-pitch)
+                (org-document-title (:height 1.75) org-document-title)
+                (org-level-1 (:height 1.5) org-level-1)
+                (org-level-2 (:height 1.2) org-level-2)
+                (org-block-begin-line (:height 0.7) org-block)))
 
-;;   ;; Set the window size adjustment function for eat buffers
-;;   (add-hook 'eat-mode-hook
-;;             (lambda ()
-;;               ;; Disable line numbers and fringes in terminal
-;;               (display-line-numbers-mode -1)
-;;               (set-window-fringes nil 0 0)
-;;               (set-window-margins nil 0 0)
-;;               ;; Use custom window size function
-;;               (setq-local window-adjust-process-window-size-function 
-;;                           #'+eat-window-size-adjust)))
+  (setq header-line-format " ")
+  (set-face-background 'header-line "doom-modeline-bar-inactive")
+  (org-display-inline-images)
+  (visual-fill-column-mode 1)
+  (visual-line-mode 1)
+  (doom-disable-line-numbers-h)
+  (text-scale-set 4)
+  (hl-line-mode 0)
+  (menu-bar-mode 0)
+  (tool-bar-mode 0)
+  )
 
-  ;; (defun pada/popup-eat (&optional arg)
-  ;;   "Pop up an eat terminal buffer and add it to the current perspective."
-  ;;   (interactive "P")
-  ;;   (let* ((default-directory (project-root (project-current t)))
-  ;;          (eat-buffer-name (project-prefixed-buffer-name "eat"))
-  ;;          (window (get-buffer-window eat-buffer-name)))
-  ;;     (if (window-live-p window)
-  ;;         (delete-window window)
-  ;;       (let ((buffer (eat-project arg)))
-  ;;         (unless (persp-contain-buffer-p buffer)
-  ;;           (persp-add-buffer buffer))))))
-  ;; (map! :leader
-  ;;       :desc "Toggle eat popup" "ot" #'pada/popup-eat)
-  ;; (map! :map 'eat-mode-map
-  ;;       :i "C-c" #'eat-self-input
-  ;;       :i "C-d" #'eat-self-input
-  ;;       :i "C-r" #'eat-self-input))
+(defun my/org-present-end ()
+  (setq-local face-remapping-alist nil)
+  (setq header-line-format nil)
+  (org-remove-inline-images)
+  (visual-fill-column-mode 0)
+  (visual-line-mode 0)
+  (hl-line-mode 1)
+  (menu-bar-mode 1)
+  (text-scale-set 0)
+  (doom-enable-line-numbers-h)
+  (doom/reset-font-size))
+
+(use-package! org-present
+  :hook
+  ((org-present-mode . my/org-present-start)
+   (org-present-mode-quit . my/org-present-end))
+  :config
+  (setq visual-fill-column-width 20
+        visual-fill-column-center-text t)
+  (map! :map org-present-mode-keymap
+        :nm "n" #'org-present-next
+        :nm "b" #'org-present-prev
+        :nm "q" #'org-present-quit)
+  )
+
+
+;; Auto Disable evil
+(after! (evil vterm eat)
+  (evil-set-initial-state 'vterm-mode 'emacs))
